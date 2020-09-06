@@ -23,7 +23,7 @@ jobs:
       - name: check out gaia
         uses: actions/checkout@v2
         with:
-          repository: public-awesome/stakebird
+          repository: cosmos/gaia
 
       - name: Setup go
         uses: actions/setup-go@v1
