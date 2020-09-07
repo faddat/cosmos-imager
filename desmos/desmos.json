@@ -8,7 +8,7 @@
     "file_target_extension": "xz",
     "file_unarchive_cmd": ["xz", "--decompress", "$ARCHIVE_PATH"],
     "image_build_method": "reuse",
-    "image_path": "ubuntu-gaia.img",
+    "image_path": "desmos.img",
     "image_size": "3.1G",
     "image_type": "dos",
     "image_partitions": [
@@ -43,18 +43,18 @@
     },
     {
       "type": "file",
-      "source": "gaia/gaiad.service",
-      "destination": "/etc/systemd/system/gaiad.service"
+      "source": "desmos/desmosd.service",
+      "destination": "/etc/systemd/system/desmosd.service"
     },
     {
       "type": "file",
-      "source": "gaia/gaia/build/gaiad",
-      "destination": "/usr/bin/gaiad"
+      "source": "desmos/desmos/build/desmosd",
+      "destination": "/usr/bin/desmosd"
     },
     {
       "type": "file",
-      "source": "gaia/gaia/build/gaiacli",
-      "destination": "/usr/bin/gaiacli"
+      "source": "desmos/desmos/build/desmoscli",
+      "destination": "/usr/bin/desmoscli"
     },
     {
       "type": "shell",
@@ -63,10 +63,10 @@
         "echo 'nameserver 8.8.8.8' > /etc/resolv.conf",
         "echo 'nameserver 1.1.1.1' >> /etc/resolv.conf",
         "apt update",
-        "apt install -y curl wget",
-        "mkdir -p /gaia/config",
-        "wget -O /gaia/config/genesis.json https://raw.githubusercontent.com/cosmos/launch/master/genesis.json",
-        "chmod +x /usr/bin/gaiad",
+        "apt install -y wget",
+        "mkdir -p /desmos/config",
+        "wget -O /desmos/config/genesis.json https://raw.githubusercontent.com/cosmos/launch/master/genesis.json",
+        "chmod +x /usr/bin/desmosd /usr/bin/desmoscli",
         "systemctl enable gaiad"
       ]
     }
