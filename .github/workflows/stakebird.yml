@@ -43,10 +43,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Stakebird arm64
-          path: bin/
+          path: stakebird/stakebird/bin/
 
       - name: Build ubuntu-stakebird.img
-        run: docker run --rm --privileged -v /dev:/dev -v ${PWD}:/build mkaczanowski/packer-builder-arm build stakebird.json
+        run: docker run --rm --privileged -v /dev:/dev -v ${PWD}:/build mkaczanowski/packer-builder-arm build stakebird/stakebird.json
 
       - name: Install PiShrink
         run: |
