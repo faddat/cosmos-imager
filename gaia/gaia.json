@@ -48,12 +48,12 @@
     },
     {
       "type": "file",
-      "source": "build/gaiad",
+      "source": "gaia/gaia/build/gaiad",
       "destination": "/usr/bin/gaiad"
     },
     {
       "type": "file",
-      "source": "build/gaiacli",
+      "source": "gaia/gaia/build/gaiacli",
       "destination": "/usr/bin/gaiacli"
     },
     {
