@@ -17,14 +17,15 @@ jobs:
     name: Stakebird Pi Image
     runs-on: ubuntu-latest
     steps:
-      - name: Check out stakebird
-        uses: actions/checkout@v2
-        with:
-          repository: https://github.com/public-awesome/stakebird
-          
       - name: Check out imager
         uses: actions/checkout@v2
 
+      - name: Check out stakebird
+        uses: actions/checkout@v2
+        with:
+          repository: public-awesome/stakebird
+          path: stakebird/stakebird
+      
       - name: Setup go
         uses: actions/setup-go@v1
         with:
@@ -43,7 +44,7 @@ jobs:
           path: bin/
 
       - name: Build ubuntu-stakebird.img
-        run: docker run --rm --privileged -v /dev:/dev -v ${PWD}:/build mkaczanowski/packer-builder-arm buildubuntu-stakebird.json
+        run: docker run --rm --privileged -v /dev:/dev -v ${PWD}:/build mkaczanowski/packer-builder-arm build stakebird.json
 
       - name: Install PiShrink
         run: |
@@ -52,10 +53,10 @@ jobs:
           sudo mv pishrink.sh /usr/local/bin
           
       - name: Shrink gaia.img
-        run: sudo pishrink.sh -a -Z -v ubuntu-stakebird.img
+        run: sudo pishrink.sh -a -Z -v stakebird.img
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Gaia PI
-          path: ubuntu-stakebird.img.xz
+          path: stakebird.img.xz
