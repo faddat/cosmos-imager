@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Gaia
+name: Desmos
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -14,13 +14,13 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Gaia Pi Image
+    name: Desmos Pi Image
     runs-on: ubuntu-latest
     steps:
       - name: Check out imager
         uses: actions/checkout@v2
 
-      - name: check out gaia
+      - name: check out desmos
         uses: actions/checkout@v2
         with:
           repository: desmos-labs/desmos
@@ -34,7 +34,7 @@ jobs:
 
       - name: Compile
         run: |
-          cd gaia/gaia
+          cd desmos/desmos
           make build
         env:
           GOOS: linux
