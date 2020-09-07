@@ -32,7 +32,9 @@ jobs:
           go-version: 1.15
 
       - name: Compile
-        run: make build
+        run: |
+          cd stakebird/stakebird
+          make build
         env:
           GOOS: linux
           GOARCH: arm64
