@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: Check out imager
         uses: actions/checkout@v2
+        run: ls
 
       - name: check out gaia
         uses: actions/checkout@v2
