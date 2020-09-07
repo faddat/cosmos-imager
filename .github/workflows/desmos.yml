@@ -49,18 +49,19 @@ jobs:
       - name: Build desmos.img
         run: docker run --rm --privileged -v /dev:/dev -v ${PWD}:/build mkaczanowski/packer-builder-arm build desmos/desmos.json
 
-      - name: Install PiShrink
-        run: |
-          wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
-          chmod +x pishrink.sh
-          sudo mv pishrink.sh /usr/local/bin
+# Compression fails, disable it for now
+#      - name: Install PiShrink
+#        run: |
+#          wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
+#          chmod +x pishrink.sh
+#          sudo mv pishrink.sh /usr/local/bin
 
-      - name: Shrink desmos.img
-        run: sudo pishrink.sh -a -Z -v -r desmos.img
+#      - name: Shrink desmos.img
+#        run: sudo pishrink.sh -a -Z -v -r desmos.img
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Desmos Image
-          path: desmos.img.xz
+          path: desmos.img
 
