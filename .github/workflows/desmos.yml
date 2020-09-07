@@ -43,7 +43,7 @@ jobs:
       - name: Upload Gaia Arm64 Binaries
         uses: actions/upload-artifact@v2
         with:
-          name: Gaia arm64
+          name: desmos arm64
           path: desmos/desmos/build/
 
       - name: Build ubuntu-gaia.img
@@ -55,12 +55,12 @@ jobs:
           chmod +x pishrink.sh
           sudo mv pishrink.sh /usr/local/bin
 
-      - name: Shrink gaia.img
+      - name: Shrink desmos.img
         run: sudo pishrink.sh -a -Z -v desmos.img
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Gaia PI
-          path: ubuntu-gaia.img.xz
+          name: Desmos Image
+          path: desmos.img.xz
 
