@@ -67,7 +67,7 @@
         "mkdir -p /desmos/config",
         "wget -O /desmos/config/genesis.json https://raw.githubusercontent.com/cosmos/launch/master/genesis.json",
         "chmod +x /usr/bin/desmosd /usr/bin/desmoscli",
-        "systemctl enable gaiad"
+        "systemctl enable desmosd"
       ]
     }
   ],
