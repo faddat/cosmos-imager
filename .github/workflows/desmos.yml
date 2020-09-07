@@ -46,7 +46,7 @@ jobs:
           name: desmos arm64
           path: desmos/desmos/build/
 
-      - name: Build ubuntu-gaia.img
+      - name: Build desmos.img
         run: docker run --rm --privileged -v /dev:/dev -v ${PWD}:/build mkaczanowski/packer-builder-arm build desmos/desmos.json
 
       - name: Install PiShrink
@@ -56,7 +56,7 @@ jobs:
           sudo mv pishrink.sh /usr/local/bin
 
       - name: Shrink desmos.img
-        run: sudo pishrink.sh -a -Z -v desmos.img
+        run: sudo pishrink.sh -a -Z -v -r desmos.img
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
