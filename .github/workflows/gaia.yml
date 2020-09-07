@@ -20,16 +20,11 @@ jobs:
       - name: Check out imager
         uses: actions/checkout@v2
 
-      - name: find muh files!
-        run: |
-          pwd
-          ls
-
-
       - name: check out gaia
         uses: actions/checkout@v2
         with:
           repository: cosmos/gaia
+          path: gaia/gaia
 
       - name: Setup go
         uses: actions/setup-go@v1
@@ -37,7 +32,9 @@ jobs:
           go-version: 1.15
 
       - name: Compile
-        run: make build
+        run: |
+          cd gaia/gaia
+          make build
         env:
           GOOS: linux
           GOARCH: arm64
@@ -46,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Gaia arm64
-          path: build/
+          path: gaia/gaia/build/
 
       - name: Build ubuntu-gaia.img
         run: docker run --rm --privileged -v /dev:/dev -v ${PWD}:/build mkaczanowski/packer-builder-arm build gaia/gaia.json
