@@ -55,11 +55,11 @@ jobs:
           sudo mv pishrink.sh /usr/local/bin
 
       - name: Shrink gaia.img
-        run: sudo pishrink.sh -a -Z -v ubuntu-gaia.img
+        run: sudo pishrink.sh -a -Z -v gaia.img
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Gaia PI
-          path: ubuntu-gaia.img.xz
+          path: gaia.img.xz
 
