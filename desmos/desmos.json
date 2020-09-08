@@ -65,7 +65,7 @@
         "apt update",
         "apt install -y wget",
         "mkdir -p /desmos/config",
-        "wget -O /desmos/config/genesis.json https://raw.githubusercontent.com/cosmos/launch/master/genesis.json",
+        "wget -O /desmos/config/genesis.json https://github.com/desmos-labs/morpheus/raw/master/genesis.json",
         "chmod +x /usr/bin/desmosd /usr/bin/desmoscli",
         "systemctl enable desmosd"
       ]
