@@ -52,7 +52,7 @@
         "wget https://github.com/ovrclk/akash/releases/download/v0.8.2/akash_0.8.2_linux_arm64.deb",
         "dpkg -i akash_0.8.2_linux_arm64.deb",
         "rm akash_0.8.2_linux_arm64.deb",
-        "wget -O /akash/config/genesis.json https://raw.githubusercontent.com/ovrclk/net/master/akashnet-1/genesis.json",
+        "wget -O /akashd/config/genesis.json https://raw.githubusercontent.com/ovrclk/net/master/akashnet-1/genesis.json",
         "systemctl enable akashd"
       ]
     }
