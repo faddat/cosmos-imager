@@ -1,0 +1,40 @@
+# This is a basic workflow that is manually triggered
+
+name: Akash
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on: [push, pull_request]
+
+
+# This workflow makes a 64 bit Raspberry Pi Ubuntu Server Image.
+# It does not have the security issues mentioned here: https://github.com/tendermint/tendermint/blob/master/docs/tendermint-core/running-in-production.md#validator-signing-on-32-bit-architectures-or-arm
+# Later, more devices will be supported, as well.
+
+
+jobs:
+  build:
+    name: Akash Pi Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out imager
+        uses: actions/checkout@v2
+
+      - name: Build ubuntu-akash.img
+        run: docker run --rm --privileged -v /dev:/dev -v ${PWD}:/build mkaczanowski/packer-builder-arm build akash/akash.json
+
+      - name: Install PiShrink
+        run: |
+          wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
+          chmod +x pishrink.sh
+          sudo mv pishrink.sh /usr/local/bin
+
+      - name: Shrink akash.img
+        run: sudo pishrink.sh -a -Z -v akash.img
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Akash PI
+          path: akash.img.xz
+
